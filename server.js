@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const crypto = require("crypto");
 
@@ -7,8 +8,10 @@ const PORT = Number(process.env.PORT || 3000);
 const ROOT = __dirname;
 const PUBLIC_DIR = path.join(ROOT, "public");
 const DATA_DIR = path.join(ROOT, "data");
-const DB_FILE = path.join(DATA_DIR, "db.json");
 const SEED_FILE = path.join(DATA_DIR, "seed.json");
+const IS_VERCEL = Boolean(process.env.VERCEL || process.env.VERCEL_ENV || process.env.NOW_REGION);
+const RUNTIME_DATA_DIR = process.env.GFH_DATA_DIR || (IS_VERCEL ? path.join(os.tmpdir(), "girls-fun-hub") : DATA_DIR);
+const DB_FILE = path.join(RUNTIME_DATA_DIR, "db.json");
 const SESSION_TTL_MS = 1000 * 60 * 60 * 8;
 const BODY_LIMIT_BYTES = 1024 * 1024;
 
@@ -32,8 +35,8 @@ function now() {
 }
 
 function ensureDataStore() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (!fs.existsSync(RUNTIME_DATA_DIR)) {
+    fs.mkdirSync(RUNTIME_DATA_DIR, { recursive: true });
   }
 
   if (!fs.existsSync(DB_FILE)) {

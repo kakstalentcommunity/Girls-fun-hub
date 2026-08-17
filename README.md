@@ -41,8 +41,16 @@ The runnable app uses a local JSON database:
 
 - `data/seed.json` contains demo content.
 - `data/db.json` is generated automatically on first run.
+- On Vercel, `data/seed.json` is still used as the seed, but the generated runtime database is written under the platform temp directory because the deployed app bundle is read-only.
 
 To reset local data, stop the server, delete `data/db.json`, and start the server again.
+
+You can override the writable database directory with:
+
+```bash
+$env:GFH_DATA_DIR="C:\path\to\writable\data"
+npm start
+```
 
 `database.sql` is included as a reference schema for teams that want to migrate the JavaScript MVP to MySQL later. It is not required to run this project.
 
@@ -132,6 +140,8 @@ This is a local MVP, not a production security boundary. It includes hashed pass
 ## Deploying
 
 For shared hosting, use a provider that supports Node.js apps. Start with `node server.js` and point the web process at the configured `PORT`. For static-only hosting, the API-backed features will not work.
+
+Vercel serverless deployments cannot write to files inside the deployed project directory. This app detects Vercel and writes the generated JSON database to temp storage so the app can boot, but temp storage is not durable and can reset between cold starts or instances. Use a real database before relying on production user-generated content.
 
 ## Changing Branding And Colors
 

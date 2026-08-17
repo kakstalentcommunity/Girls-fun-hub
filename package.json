@@ -1,0 +1,19 @@
+{
+  "name": "girls-fun-hub-js",
+  "version": "1.0.0",
+  "description": "A vanilla JavaScript community entertainment MVP for Girls Fun Hub.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check public/assets/js/app.js"
+  },
+  "keywords": [
+    "javascript",
+    "community",
+    "games",
+    "quizzes"
+  ],
+  "author": "",
+  "license": "MIT"
+}

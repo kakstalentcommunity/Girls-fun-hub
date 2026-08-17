@@ -1,0 +1,1323 @@
+{
+  "meta": {
+    "nextIds": {
+      "user": 4,
+      "post": 6,
+      "comment": 6,
+      "like": 5,
+      "notification": 2,
+      "report": 2,
+      "article": 11,
+      "poll": 11,
+      "challenge": 11,
+      "quizResult": 2,
+      "gamePrompt": 25
+    }
+  },
+  "admin_users": [
+    {
+      "id": "admin1",
+      "username": "admin",
+      "email": "admin@girlsfunhub.local",
+      "passwordHash": ""
+    }
+  ],
+  "users": [
+    {
+      "id": "u1",
+      "username": "Mira",
+      "email": "mira@example.com",
+      "passwordHash": "",
+      "dateOfBirth": "1992-04-13",
+      "adultConfirmed": true,
+      "disabled": false,
+      "createdAt": "2026-07-01T10:30:00.000Z"
+    },
+    {
+      "id": "u2",
+      "username": "Jade",
+      "email": "jade@example.com",
+      "passwordHash": "",
+      "dateOfBirth": "1989-11-18",
+      "adultConfirmed": true,
+      "disabled": false,
+      "createdAt": "2026-07-04T15:45:00.000Z"
+    },
+    {
+      "id": "u3",
+      "username": "Nina",
+      "email": "nina@example.com",
+      "passwordHash": "",
+      "dateOfBirth": "1997-02-25",
+      "adultConfirmed": true,
+      "disabled": false,
+      "createdAt": "2026-07-08T09:12:00.000Z"
+    }
+  ],
+  "user_profiles": {
+    "u1": {
+      "bio": "Weekend planner, quiz taker, and maker of excellent snack boards.",
+      "profilePicture": "",
+      "favoriteCategories": ["Games", "Self-care", "Travel"],
+      "gamesPlayed": 12,
+      "challengesJoined": 3
+    },
+    "u2": {
+      "bio": "Here for polls, playlists, and conversations that feel easy.",
+      "profilePicture": "",
+      "favoriteCategories": ["Music", "Community", "Fashion"],
+      "gamesPlayed": 8,
+      "challengesJoined": 4
+    },
+    "u3": {
+      "bio": "Loves trivia, city breaks, and low-pressure group fun.",
+      "profilePicture": "",
+      "favoriteCategories": ["Trivia", "Career", "Entertainment"],
+      "gamesPlayed": 15,
+      "challengesJoined": 2
+    }
+  },
+  "categories": [
+    "Party Games",
+    "Personality",
+    "Trivia",
+    "Quick Games",
+    "Beauty",
+    "Fashion",
+    "Self-care",
+    "Travel",
+    "Food",
+    "Fitness",
+    "Relationships",
+    "Money",
+    "Career",
+    "Personal growth",
+    "Music",
+    "Movies",
+    "TV",
+    "Trends"
+  ],
+  "games": [
+    {
+      "id": "truth-dare",
+      "title": "Truth or Dare",
+      "category": "Party Games",
+      "description": "Pick truth or dare and get a fresh prompt for an easy group moment.",
+      "imageLabel": "T/D"
+    },
+    {
+      "id": "would-you-rather",
+      "title": "Would You Rather",
+      "category": "Quick Games",
+      "description": "Vote between two tempting choices and see where the room lands.",
+      "imageLabel": "A/B"
+    },
+    {
+      "id": "never-have-i-ever",
+      "title": "Never Have I Ever",
+      "category": "Party Games",
+      "description": "Answer playful statements and compare results with the community.",
+      "imageLabel": "NH"
+    },
+    {
+      "id": "spin-the-wheel",
+      "title": "Spin the Wheel",
+      "category": "Random Games",
+      "description": "Spin for a truth, dare, challenge, question, or wild-card prompt.",
+      "imageLabel": "SP"
+    },
+    {
+      "id": "clue-challenge",
+      "title": "Clue Challenge",
+      "category": "Trivia",
+      "description": "Guess the movie, song, phrase, or celebrity from plain-word clues.",
+      "imageLabel": "CL"
+    },
+    {
+      "id": "memory-match",
+      "title": "Memory Match",
+      "category": "Quick Games",
+      "description": "Flip cards, find pairs, and beat your own time.",
+      "imageLabel": "MM"
+    },
+    {
+      "id": "personality-quiz",
+      "title": "Personality Quiz",
+      "category": "Personality",
+      "description": "Answer light prompts and reveal a polished personality result.",
+      "imageLabel": "PQ"
+    },
+    {
+      "id": "trivia-night",
+      "title": "Trivia Night",
+      "category": "Trivia",
+      "description": "Quick questions across music, movies, travel, and everyday culture.",
+      "imageLabel": "TR"
+    },
+    {
+      "id": "friendship-match",
+      "title": "Friendship Match",
+      "category": "Couples/Friends",
+      "description": "Find out how your friendship style shows up in plans and support.",
+      "imageLabel": "FM"
+    },
+    {
+      "id": "random-spark",
+      "title": "Random Spark",
+      "category": "Random Games",
+      "description": "A tiny prompt generator for starting a conversation in seconds.",
+      "imageLabel": "RS"
+    }
+  ],
+  "game_prompts": [
+    {
+      "id": "gp1",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What is a harmless secret talent you almost never mention?"
+    },
+    {
+      "id": "gp2",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What tiny thing instantly improves your mood?"
+    },
+    {
+      "id": "gp3",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What is a trend you tried and secretly loved?"
+    },
+    {
+      "id": "gp4",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What is the funniest message you have almost sent to the wrong person?"
+    },
+    {
+      "id": "gp5",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What is your most reliable comfort watch?"
+    },
+    {
+      "id": "gp6",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What is one opinion you hold about snacks that people debate?"
+    },
+    {
+      "id": "gp7",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What song always pulls you onto the dance floor?"
+    },
+    {
+      "id": "gp8",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What would your ideal free Saturday look like?"
+    },
+    {
+      "id": "gp9",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What is the best compliment you have ever received?"
+    },
+    {
+      "id": "gp10",
+      "gameId": "truth-dare",
+      "type": "truth",
+      "text": "What is a small luxury you think is worth it?"
+    },
+    {
+      "id": "gp11",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Do your most confident runway walk across the room."
+    },
+    {
+      "id": "gp12",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Give a dramatic reading of the last text you sent, without naming the person."
+    },
+    {
+      "id": "gp13",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Make a 15 second ad for the nearest object."
+    },
+    {
+      "id": "gp14",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Compliment three people in the room with specific details."
+    },
+    {
+      "id": "gp15",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Invent a new handshake and teach it to someone."
+    },
+    {
+      "id": "gp16",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Hum a chorus and let everyone guess the song."
+    },
+    {
+      "id": "gp17",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Pose like you are on a magazine cover for five seconds."
+    },
+    {
+      "id": "gp18",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Text someone a sincere thank-you message."
+    },
+    {
+      "id": "gp19",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Create a two-line poem about your current drink."
+    },
+    {
+      "id": "gp20",
+      "gameId": "truth-dare",
+      "type": "dare",
+      "text": "Share your best practical life tip in under 20 seconds."
+    },
+    {
+      "id": "gp21",
+      "gameId": "spin-the-wheel",
+      "type": "challenge",
+      "text": "Start a one-minute gratitude round."
+    },
+    {
+      "id": "gp22",
+      "gameId": "spin-the-wheel",
+      "type": "question",
+      "text": "What fictional home would you move into for a week?"
+    },
+    {
+      "id": "gp23",
+      "gameId": "spin-the-wheel",
+      "type": "random",
+      "text": "Swap seats with someone and give them a new nickname for the next round."
+    },
+    {
+      "id": "gp24",
+      "gameId": "spin-the-wheel",
+      "type": "truth",
+      "text": "What is a purchase under 20 dollars that made life better?"
+    }
+  ],
+  "wouldYouRatherRounds": [
+    {
+      "id": "wyr1",
+      "question": "Would you rather travel the world for free or own your dream home?",
+      "optionA": "Travel the world",
+      "optionB": "Own the dream home",
+      "votesA": 42,
+      "votesB": 37,
+      "userVotes": []
+    },
+    {
+      "id": "wyr2",
+      "question": "Would you rather host the perfect dinner party or attend a secret concert?",
+      "optionA": "Host dinner",
+      "optionB": "Secret concert",
+      "votesA": 26,
+      "votesB": 51,
+      "userVotes": []
+    },
+    {
+      "id": "wyr3",
+      "question": "Would you rather have a personal stylist for a year or a personal chef for a year?",
+      "optionA": "Personal stylist",
+      "optionB": "Personal chef",
+      "votesA": 31,
+      "votesB": 58,
+      "userVotes": []
+    }
+  ],
+  "neverStatements": [
+    {
+      "id": "nh1",
+      "text": "Never have I ever booked a trip because I saw one beautiful photo.",
+      "doneCount": 33,
+      "notYetCount": 18,
+      "userResponses": []
+    },
+    {
+      "id": "nh2",
+      "text": "Never have I ever bought an outfit for one specific event.",
+      "doneCount": 61,
+      "notYetCount": 9,
+      "userResponses": []
+    },
+    {
+      "id": "nh3",
+      "text": "Never have I ever stayed up too late finishing a show.",
+      "doneCount": 74,
+      "notYetCount": 6,
+      "userResponses": []
+    }
+  ],
+  "clueChallenges": [
+    {
+      "id": "clue1",
+      "clues": ["red carpet", "gold statue", "acceptance speech"],
+      "answer": "Award show"
+    },
+    {
+      "id": "clue2",
+      "clues": ["glass slipper", "midnight", "royal ball"],
+      "answer": "Cinderella"
+    },
+    {
+      "id": "clue3",
+      "clues": ["coffee shop", "orange sofa", "six friends"],
+      "answer": "Friends"
+    },
+    {
+      "id": "clue4",
+      "clues": ["microphone", "spotlight", "encore"],
+      "answer": "Concert"
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "weekend-girl",
+      "title": "What Kind of Weekend Girl Are You?",
+      "description": "Find your natural weekend rhythm, from serene reset to social spark.",
+      "category": "Personality",
+      "imageLabel": "WKND",
+      "results": {
+        "planner": {
+          "title": "The Curated Planner",
+          "description": "You love a weekend with just enough structure to make the fun feel effortless."
+        },
+        "wanderer": {
+          "title": "The Spontaneous Wanderer",
+          "description": "You thrive when the plan has room for surprise, detours, and one excellent story."
+        },
+        "restorer": {
+          "title": "The Soft Reset",
+          "description": "Your ideal weekend restores your energy and makes Monday feel less sharp."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Your Friday night starts with:",
+          "answers": [
+            { "id": "a1", "text": "A booked table and a coordinated plan", "resultKey": "planner" },
+            { "id": "a2", "text": "One text that says meet me there", "resultKey": "wanderer" },
+            { "id": "a3", "text": "Clean sheets and a favorite show", "resultKey": "restorer" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Pick a weekend win:",
+          "answers": [
+            { "id": "a1", "text": "Trying the new place before everyone else", "resultKey": "planner" },
+            { "id": "a2", "text": "Finding a hidden street market", "resultKey": "wanderer" },
+            { "id": "a3", "text": "Feeling rested without feeling guilty", "resultKey": "restorer" }
+          ]
+        },
+        {
+          "id": "q3",
+          "text": "Your friends count on you for:",
+          "answers": [
+            { "id": "a1", "text": "The details", "resultKey": "planner" },
+            { "id": "a2", "text": "The momentum", "resultKey": "wanderer" },
+            { "id": "a3", "text": "The calm", "resultKey": "restorer" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travel-personality",
+      "title": "Which Travel Personality Are You?",
+      "description": "Choose your pace, packing style, and perfect day away.",
+      "category": "Travel",
+      "imageLabel": "TRVL",
+      "results": {
+        "culture": {
+          "title": "The Culture Collector",
+          "description": "You travel for the galleries, neighborhoods, food, and stories that stay with you."
+        },
+        "escape": {
+          "title": "The Unplugged Escape",
+          "description": "You want fresh air, soft schedules, and enough quiet to hear yourself think."
+        },
+        "city": {
+          "title": "The City Spark",
+          "description": "You come alive in walkable streets, late dinners, and unexpected little finds."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "First thing you research:",
+          "answers": [
+            { "id": "a1", "text": "Museums and local history", "resultKey": "culture" },
+            { "id": "a2", "text": "Nature views and quiet stays", "resultKey": "escape" },
+            { "id": "a3", "text": "Restaurants and neighborhoods", "resultKey": "city" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Your suitcase priority:",
+          "answers": [
+            { "id": "a1", "text": "Comfortable shoes for long days", "resultKey": "culture" },
+            { "id": "a2", "text": "Soft layers and skincare", "resultKey": "escape" },
+            { "id": "a3", "text": "Outfits that go day to night", "resultKey": "city" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "friendship-style",
+      "title": "What Is Your Friendship Style?",
+      "description": "See how you show care, create plans, and keep the group close.",
+      "category": "Relationships",
+      "imageLabel": "FRND",
+      "results": {
+        "anchor": {
+          "title": "The Anchor",
+          "description": "You are steady, loyal, and excellent at making people feel seen."
+        },
+        "spark": {
+          "title": "The Spark",
+          "description": "You bring energy, ideas, and the invitation that gets everyone moving."
+        },
+        "listener": {
+          "title": "The Deep Listener",
+          "description": "Your superpower is attention. People leave conversations with you feeling lighter."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "A friend is stressed. You:",
+          "answers": [
+            { "id": "a1", "text": "Check in and offer practical help", "resultKey": "anchor" },
+            { "id": "a2", "text": "Suggest a mood-lifting outing", "resultKey": "spark" },
+            { "id": "a3", "text": "Ask questions and listen fully", "resultKey": "listener" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Your group chat role is:",
+          "answers": [
+            { "id": "a1", "text": "Remembering the important dates", "resultKey": "anchor" },
+            { "id": "a2", "text": "Dropping the funniest plan idea", "resultKey": "spark" },
+            { "id": "a3", "text": "Following up privately when needed", "resultKey": "listener" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fun-personality",
+      "title": "What Is Your Fun Personality?",
+      "description": "A quick read on what makes fun feel natural to you.",
+      "category": "Personality",
+      "imageLabel": "FUN",
+      "results": {
+        "host": {
+          "title": "The Warm Host",
+          "description": "You make spaces feel comfortable, generous, and easy to enter."
+        },
+        "comic": {
+          "title": "The Light Maker",
+          "description": "Your timing, wit, and honesty keep things bright."
+        },
+        "explorer": {
+          "title": "The Experience Seeker",
+          "description": "You collect moments, not just plans, and you make ordinary days interesting."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Fun starts when:",
+          "answers": [
+            { "id": "a1", "text": "Everyone feels included", "resultKey": "host" },
+            { "id": "a2", "text": "Someone says the quiet part out loud", "resultKey": "comic" },
+            { "id": "a3", "text": "You try something new", "resultKey": "explorer" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Pick your ideal invite:",
+          "answers": [
+            { "id": "a1", "text": "Dinner at home with great lighting", "resultKey": "host" },
+            { "id": "a2", "text": "A comedy show with friends", "resultKey": "comic" },
+            { "id": "a3", "text": "A class none of you have tried", "resultKey": "explorer" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fashion-mood",
+      "title": "Which Fashion Mood Matches You?",
+      "description": "Find the current style energy you are leaning toward.",
+      "category": "Fashion",
+      "imageLabel": "MODE",
+      "results": {
+        "classic": {
+          "title": "Clean Classic",
+          "description": "Sharp lines, strong basics, and pieces that keep earning their space."
+        },
+        "bold": {
+          "title": "Bold Detail",
+          "description": "You like a look with one confident choice that does the talking."
+        },
+        "soft": {
+          "title": "Soft Ease",
+          "description": "Texture, movement, and comfort are doing the work beautifully."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Your outfit anchor is:",
+          "answers": [
+            { "id": "a1", "text": "A perfect blazer", "resultKey": "classic" },
+            { "id": "a2", "text": "A statement accessory", "resultKey": "bold" },
+            { "id": "a3", "text": "A soft knit or relaxed set", "resultKey": "soft" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Your preferred color story:",
+          "answers": [
+            { "id": "a1", "text": "Black, white, and one neutral", "resultKey": "classic" },
+            { "id": "a2", "text": "A standout pop of color", "resultKey": "bold" },
+            { "id": "a3", "text": "Muted, tonal, and gentle", "resultKey": "soft" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "self-care-rhythm",
+      "title": "What Self-care Rhythm Fits You?",
+      "description": "A useful nudge toward the kind of reset you will actually use.",
+      "category": "Self-care",
+      "imageLabel": "CARE",
+      "results": {
+        "ritual": {
+          "title": "The Ritual Builder",
+          "description": "You benefit from repeatable rituals that make care feel grounded."
+        },
+        "space": {
+          "title": "The Space Maker",
+          "description": "Your reset starts when your calendar and room have breathing space."
+        },
+        "motion": {
+          "title": "The Mood Mover",
+          "description": "Your energy shifts through movement, music, and fresh scenery."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "When you feel drained, you reach for:",
+          "answers": [
+            { "id": "a1", "text": "A familiar routine", "resultKey": "ritual" },
+            { "id": "a2", "text": "A cleared surface and quiet hour", "resultKey": "space" },
+            { "id": "a3", "text": "A walk or upbeat playlist", "resultKey": "motion" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Your ideal reset length:",
+          "answers": [
+            { "id": "a1", "text": "A steady 20 minutes daily", "resultKey": "ritual" },
+            { "id": "a2", "text": "A whole uncluttered afternoon", "resultKey": "space" },
+            { "id": "a3", "text": "Five minutes that changes the mood", "resultKey": "motion" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "career-energy",
+      "title": "What Career Energy Are You Bringing?",
+      "description": "Name the work mode you are in right now.",
+      "category": "Career",
+      "imageLabel": "WORK",
+      "results": {
+        "builder": {
+          "title": "The Builder",
+          "description": "You are ready to make systems, finish decisions, and turn ideas into structure."
+        },
+        "connector": {
+          "title": "The Connector",
+          "description": "People, trust, and thoughtful follow-through are your current edge."
+        },
+        "learner": {
+          "title": "The Expander",
+          "description": "You are hungry for new skills and a bigger version of what is possible."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Your next good work move is:",
+          "answers": [
+            { "id": "a1", "text": "Create a better process", "resultKey": "builder" },
+            { "id": "a2", "text": "Reach out to the right person", "resultKey": "connector" },
+            { "id": "a3", "text": "Learn the thing you keep avoiding", "resultKey": "learner" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Your strength this month:",
+          "answers": [
+            { "id": "a1", "text": "Focus", "resultKey": "builder" },
+            { "id": "a2", "text": "Communication", "resultKey": "connector" },
+            { "id": "a3", "text": "Curiosity", "resultKey": "learner" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movie-night",
+      "title": "What Movie Night Are You?",
+      "description": "Pick your screen-time mood for a night in.",
+      "category": "Movies",
+      "imageLabel": "FILM",
+      "results": {
+        "comfort": {
+          "title": "Comfort Rewatch",
+          "description": "You want familiar dialogue, excellent snacks, and zero stress."
+        },
+        "gloss": {
+          "title": "Glossy Drama",
+          "description": "You are in the mood for style, intrigue, and a little beautiful chaos."
+        },
+        "clever": {
+          "title": "Clever Twist",
+          "description": "Give you a smart plot, sharp pacing, and something to discuss after."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Choose the snack setup:",
+          "answers": [
+            { "id": "a1", "text": "Popcorn and cozy basics", "resultKey": "comfort" },
+            { "id": "a2", "text": "Dessert board", "resultKey": "gloss" },
+            { "id": "a3", "text": "Something spicy", "resultKey": "clever" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "After the credits you want to feel:",
+          "answers": [
+            { "id": "a1", "text": "Soothed", "resultKey": "comfort" },
+            { "id": "a2", "text": "Dramatic", "resultKey": "gloss" },
+            { "id": "a3", "text": "Impressed", "resultKey": "clever" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food-mood",
+      "title": "Which Food Mood Matches Tonight?",
+      "description": "Let your choices point to the meal energy you really want.",
+      "category": "Food",
+      "imageLabel": "FOOD",
+      "results": {
+        "home": {
+          "title": "Home Table",
+          "description": "Comforting, generous, and best shared without rushing."
+        },
+        "fresh": {
+          "title": "Fresh Bite",
+          "description": "Bright flavors, color, crunch, and a clean finish."
+        },
+        "treat": {
+          "title": "The Treat Plate",
+          "description": "You want the thing that feels special, memorable, and worth it."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Pick a flavor direction:",
+          "answers": [
+            { "id": "a1", "text": "Warm and savory", "resultKey": "home" },
+            { "id": "a2", "text": "Bright and crisp", "resultKey": "fresh" },
+            { "id": "a3", "text": "Rich and indulgent", "resultKey": "treat" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "Your ideal table:",
+          "answers": [
+            { "id": "a1", "text": "Relaxed and full", "resultKey": "home" },
+            { "id": "a2", "text": "Colorful and light", "resultKey": "fresh" },
+            { "id": "a3", "text": "A little fancy", "resultKey": "treat" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "money-mindset",
+      "title": "What Is Your Money Mindset?",
+      "description": "A gentle quiz about spending, saving, and treating future you well.",
+      "category": "Money",
+      "imageLabel": "SAVE",
+      "results": {
+        "intentional": {
+          "title": "Intentional Spender",
+          "description": "You like purchases that match your real life, not just the mood of the moment."
+        },
+        "builder": {
+          "title": "Future Builder",
+          "description": "You get satisfaction from progress, buffers, and knowing the plan is working."
+        },
+        "joy": {
+          "title": "Joy Investor",
+          "description": "You value experiences and thoughtful treats when they are chosen with care."
+        }
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "text": "A good purchase feels:",
+          "answers": [
+            { "id": "a1", "text": "Useful every week", "resultKey": "intentional" },
+            { "id": "a2", "text": "Like one step toward a goal", "resultKey": "builder" },
+            { "id": "a3", "text": "Like a memory in the making", "resultKey": "joy" }
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "You are most motivated by:",
+          "answers": [
+            { "id": "a1", "text": "Clarity", "resultKey": "intentional" },
+            { "id": "a2", "text": "Security", "resultKey": "builder" },
+            { "id": "a3", "text": "Delight", "resultKey": "joy" }
+          ]
+        }
+      ]
+    }
+  ],
+  "quiz_results": [
+    {
+      "id": "qr1",
+      "userId": "u1",
+      "quizId": "travel-personality",
+      "resultKey": "city",
+      "score": 100,
+      "createdAt": "2026-08-04T12:00:00.000Z"
+    }
+  ],
+  "challenges": [
+    {
+      "id": "ch1",
+      "title": "Compliment Circle",
+      "description": "Send three specific compliments this week and notice what shifts.",
+      "category": "Community",
+      "difficulty": "Easy",
+      "startDate": "2026-08-17",
+      "endDate": "2026-08-24",
+      "participantIds": ["u1", "u2"]
+    },
+    {
+      "id": "ch2",
+      "title": "New Hairstyle Test",
+      "description": "Try a small styling change, then share what worked.",
+      "category": "Beauty",
+      "difficulty": "Easy",
+      "startDate": "2026-08-15",
+      "endDate": "2026-08-22",
+      "participantIds": ["u3"]
+    },
+    {
+      "id": "ch3",
+      "title": "Unpopular Opinion Thread",
+      "description": "Post a light, harmless opinion that always gets people talking.",
+      "category": "Community",
+      "difficulty": "Easy",
+      "startDate": "2026-08-16",
+      "endDate": "2026-08-23",
+      "participantIds": ["u1"]
+    },
+    {
+      "id": "ch4",
+      "title": "Five Minute Reset",
+      "description": "Do one small daily reset for five minutes and track how it feels.",
+      "category": "Self-care",
+      "difficulty": "Medium",
+      "startDate": "2026-08-14",
+      "endDate": "2026-08-28",
+      "participantIds": ["u2", "u3"]
+    },
+    {
+      "id": "ch5",
+      "title": "Favorite Song Share",
+      "description": "Share one song you keep replaying and say why it found you.",
+      "category": "Music",
+      "difficulty": "Easy",
+      "startDate": "2026-08-17",
+      "endDate": "2026-08-21",
+      "participantIds": ["u1", "u2", "u3"]
+    },
+    {
+      "id": "ch6",
+      "title": "Wardrobe Remix",
+      "description": "Style one piece three ways and post your favorite combo.",
+      "category": "Fashion",
+      "difficulty": "Medium",
+      "startDate": "2026-08-18",
+      "endDate": "2026-08-30",
+      "participantIds": []
+    },
+    {
+      "id": "ch7",
+      "title": "Lunch Upgrade",
+      "description": "Make one lunch feel more intentional without spending much more.",
+      "category": "Food",
+      "difficulty": "Easy",
+      "startDate": "2026-08-17",
+      "endDate": "2026-08-25",
+      "participantIds": ["u3"]
+    },
+    {
+      "id": "ch8",
+      "title": "Career Brag Note",
+      "description": "Write down three recent wins so they are ready when you need them.",
+      "category": "Career",
+      "difficulty": "Easy",
+      "startDate": "2026-08-17",
+      "endDate": "2026-08-31",
+      "participantIds": ["u2"]
+    },
+    {
+      "id": "ch9",
+      "title": "Neighborhood Walk",
+      "description": "Take a walk on a street you usually skip and find one new detail.",
+      "category": "Fitness",
+      "difficulty": "Easy",
+      "startDate": "2026-08-19",
+      "endDate": "2026-08-26",
+      "participantIds": []
+    },
+    {
+      "id": "ch10",
+      "title": "Try Something New",
+      "description": "Choose one small thing you have never tried and report back.",
+      "category": "Personal growth",
+      "difficulty": "Medium",
+      "startDate": "2026-08-20",
+      "endDate": "2026-09-03",
+      "participantIds": ["u1"]
+    }
+  ],
+  "polls": [
+    {
+      "id": "po1",
+      "question": "Beach vacation or city vacation?",
+      "category": "Travel",
+      "options": [
+        { "id": "po1a", "text": "Beach vacation", "votes": 44 },
+        { "id": "po1b", "text": "City vacation", "votes": 39 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po2",
+      "question": "Netflix night or girls' night out?",
+      "category": "Entertainment",
+      "options": [
+        { "id": "po2a", "text": "Netflix night", "votes": 32 },
+        { "id": "po2b", "text": "Girls' night out", "votes": 51 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po3",
+      "question": "Heels or sneakers?",
+      "category": "Fashion",
+      "options": [
+        { "id": "po3a", "text": "Heels", "votes": 21 },
+        { "id": "po3b", "text": "Sneakers", "votes": 66 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po4",
+      "question": "Coffee or tea?",
+      "category": "Food",
+      "options": [
+        { "id": "po4a", "text": "Coffee", "votes": 59 },
+        { "id": "po4b", "text": "Tea", "votes": 28 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po5",
+      "question": "Which sounds better tonight?",
+      "category": "Lifestyle",
+      "options": [
+        { "id": "po5a", "text": "Movie night", "votes": 22 },
+        { "id": "po5b", "text": "Girls' night out", "votes": 19 },
+        { "id": "po5c", "text": "Dinner", "votes": 27 },
+        { "id": "po5d", "text": "Stay home and relax", "votes": 34 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po6",
+      "question": "Best group chat topic?",
+      "category": "Community",
+      "options": [
+        { "id": "po6a", "text": "Weekend plans", "votes": 17 },
+        { "id": "po6b", "text": "Outfit opinions", "votes": 25 },
+        { "id": "po6c", "text": "Show recommendations", "votes": 31 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po7",
+      "question": "Sunday reset or Saturday adventure?",
+      "category": "Self-care",
+      "options": [
+        { "id": "po7a", "text": "Sunday reset", "votes": 48 },
+        { "id": "po7b", "text": "Saturday adventure", "votes": 40 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po8",
+      "question": "Playlist for getting ready?",
+      "category": "Music",
+      "options": [
+        { "id": "po8a", "text": "Pop confidence", "votes": 34 },
+        { "id": "po8b", "text": "Throwback hits", "votes": 29 },
+        { "id": "po8c", "text": "Chill R&B", "votes": 23 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po9",
+      "question": "Best small treat?",
+      "category": "Self-care",
+      "options": [
+        { "id": "po9a", "text": "Fresh flowers", "votes": 18 },
+        { "id": "po9b", "text": "Good pastry", "votes": 33 },
+        { "id": "po9c", "text": "New candle", "votes": 22 }
+      ],
+      "userVotes": []
+    },
+    {
+      "id": "po10",
+      "question": "Morning workout or evening walk?",
+      "category": "Fitness",
+      "options": [
+        { "id": "po10a", "text": "Morning workout", "votes": 30 },
+        { "id": "po10b", "text": "Evening walk", "votes": 46 }
+      ],
+      "userVotes": []
+    }
+  ],
+  "articles": [
+    {
+      "id": "a1",
+      "title": "A Low-Pressure Guide to Hosting Friends",
+      "slug": "low-pressure-guide-hosting-friends",
+      "excerpt": "Simple hosting ideas that feel welcoming without turning your evening into a production.",
+      "content": "A good night at home does not need a perfect menu or a spotless apartment. Start with one generous anchor: a tray of snacks, a pot of pasta, or a shared dessert. Add lighting that makes people feel relaxed, a playlist that can stay in the background, and a place for coats. The best hosts create ease. Ask one friend to bring ice, another to choose the first game, and give yourself permission to keep the plan simple.",
+      "featuredImage": "hosting",
+      "category": "Lifestyle",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-01",
+      "views": 128,
+      "published": true
+    },
+    {
+      "id": "a2",
+      "title": "Five Self-care Resets That Take Under Ten Minutes",
+      "slug": "five-self-care-resets-under-ten-minutes",
+      "excerpt": "Tiny rituals for when your day needs a cleaner edge.",
+      "content": "Short resets work because they reduce friction. Try washing your face and changing into a fresh top, writing down the three tasks that actually matter, stepping outside for a few minutes, clearing one visible surface, or playing one song while stretching. These moves are small enough to do now, which is the point.",
+      "featuredImage": "self-care",
+      "category": "Self-care",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-02",
+      "views": 211,
+      "published": true
+    },
+    {
+      "id": "a3",
+      "title": "How to Build a Capsule Wardrobe That Still Has Personality",
+      "slug": "capsule-wardrobe-personality",
+      "excerpt": "A practical style edit that keeps your favorite details in the room.",
+      "content": "A capsule wardrobe is not a personality eraser. Begin with reliable foundations: trousers, denim, shirts, knitwear, and shoes you actually wear. Then add personality through color, texture, jewelry, scarves, nail color, and one or two statement pieces. The result should feel easier, not smaller.",
+      "featuredImage": "fashion",
+      "category": "Fashion",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-03",
+      "views": 176,
+      "published": true
+    },
+    {
+      "id": "a4",
+      "title": "The Friendship Check-in That Does Not Feel Awkward",
+      "slug": "friendship-check-in-not-awkward",
+      "excerpt": "A warmer way to ask how someone is doing beyond the usual script.",
+      "content": "Try asking a question that gives your friend a real place to land: What has been taking up the most space in your head lately? What do you need more of this week? What are you proud of but have not had a chance to say out loud? The best check-ins are specific, gentle, and easy to answer honestly.",
+      "featuredImage": "relationships",
+      "category": "Relationships",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-04",
+      "views": 154,
+      "published": true
+    },
+    {
+      "id": "a5",
+      "title": "A Weekend City Break Packing List",
+      "slug": "weekend-city-break-packing-list",
+      "excerpt": "What to pack for a light bag that still handles dinner, walking, and weather.",
+      "content": "Start with comfortable shoes, one day-to-night outfit, a weather layer, simple sleepwear, a compact toiletry kit, and a charger that lives in your travel pouch. Add one wildcard piece if it makes you excited to get dressed. The goal is options without luggage drama.",
+      "featuredImage": "travel",
+      "category": "Travel",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-05",
+      "views": 93,
+      "published": true
+    },
+    {
+      "id": "a6",
+      "title": "Easy Dinner Ideas for a Casual Girls' Night",
+      "slug": "easy-dinner-ideas-casual-girls-night",
+      "excerpt": "Low-effort meals that still feel thoughtful.",
+      "content": "Try a build-your-own bowl bar, sheet-pan tacos, pasta with two sauces, loaded flatbreads, or a salad-and-dessert setup. Keep one thing warm, one thing fresh, and one thing sweet. People remember the comfort more than the complexity.",
+      "featuredImage": "food",
+      "category": "Food",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-06",
+      "views": 187,
+      "published": true
+    },
+    {
+      "id": "a7",
+      "title": "How to Make Fitness Feel Social Again",
+      "slug": "make-fitness-feel-social-again",
+      "excerpt": "Ideas for moving with friends without turning it into a competition.",
+      "content": "Choose movement that allows conversation: walks, dance classes, low-key hikes, beginner tennis, or stretching sessions. Set the tone around showing up, not performance. The best social fitness plans give people a reason to return.",
+      "featuredImage": "fitness",
+      "category": "Fitness",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-07",
+      "views": 84,
+      "published": true
+    },
+    {
+      "id": "a8",
+      "title": "Money Habits That Feel Kind to Future You",
+      "slug": "money-habits-kind-to-future-you",
+      "excerpt": "Small personal finance routines that reduce stress without shame.",
+      "content": "Set a weekly money date, name your savings buckets, unsubscribe from one tempting email list, and choose a guilt-free spending amount before the weekend starts. Kind money habits are clear, repeatable, and realistic.",
+      "featuredImage": "money",
+      "category": "Money",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-08",
+      "views": 103,
+      "published": true
+    },
+    {
+      "id": "a9",
+      "title": "A Better Way to Track Career Wins",
+      "slug": "better-way-track-career-wins",
+      "excerpt": "Keep a brag note that makes reviews, resumes, and confidence easier.",
+      "content": "Create one running note with wins, numbers, praise, hard problems solved, and skills learned. Update it every Friday while the details are fresh. When you need to advocate for yourself, you will not be starting from a blank page.",
+      "featuredImage": "career",
+      "category": "Career",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-09",
+      "views": 145,
+      "published": true
+    },
+    {
+      "id": "a10",
+      "title": "Personal Growth Without Turning Your Life Into Homework",
+      "slug": "personal-growth-without-homework",
+      "excerpt": "Gentle ways to grow that still leave room for pleasure.",
+      "content": "Growth can be light. Ask one better question, try one new thing a week, repair one tiny habit, or notice one pattern without judging it. You do not need to optimize every hour to become more yourself.",
+      "featuredImage": "growth",
+      "category": "Personal growth",
+      "author": "Girls Fun Hub",
+      "date": "2026-08-10",
+      "views": 132,
+      "published": true
+    }
+  ],
+  "entertainment": [
+    {
+      "id": "e1",
+      "section": "Music",
+      "title": "The Getting Ready Playlist Formula",
+      "description": "Start with confidence, add nostalgia, and end with one singalong track."
+    },
+    {
+      "id": "e2",
+      "section": "Movies",
+      "title": "Movie Night Theme Ideas",
+      "description": "Try glossy mystery, comfort comedy, stylish drama, or travel escape."
+    },
+    {
+      "id": "e3",
+      "section": "TV",
+      "title": "How to Pick a Group Watch",
+      "description": "Keep episodes under an hour and choose something easy to pause for commentary."
+    },
+    {
+      "id": "e4",
+      "section": "Celebrity news",
+      "title": "A Kinder Way to Talk About Pop Culture",
+      "description": "Discuss style, work, and public moments without piling onto private pain."
+    },
+    {
+      "id": "e5",
+      "section": "Trends",
+      "title": "Trend Try-on Without Buying Everything",
+      "description": "Test a color, silhouette, or styling idea with what you already own."
+    },
+    {
+      "id": "e6",
+      "section": "Viral topics",
+      "title": "Conversation Starters From the Internet",
+      "description": "Use viral prompts as a jumping-off point, not a personality test."
+    }
+  ],
+  "posts": [
+    {
+      "id": "p1",
+      "userId": "u1",
+      "body": "What's one thing that instantly makes your day better? Mine is a clean kitchen counter and a cold drink.",
+      "createdAt": "2026-08-15T18:10:00.000Z"
+    },
+    {
+      "id": "p2",
+      "userId": "u2",
+      "body": "What song are you currently replaying? I need new getting-ready music for Friday.",
+      "createdAt": "2026-08-15T20:25:00.000Z"
+    },
+    {
+      "id": "p3",
+      "userId": "u3",
+      "body": "Perfect girls' night: restaurant, walk, dessert, or staying in with games?",
+      "createdAt": "2026-08-16T11:40:00.000Z"
+    },
+    {
+      "id": "p4",
+      "userId": "u1",
+      "body": "Tiny win: I wrote down three career wins from the month and it made the week feel less invisible.",
+      "createdAt": "2026-08-16T16:12:00.000Z"
+    },
+    {
+      "id": "p5",
+      "userId": "u2",
+      "body": "Poll idea: is brunch better when planned two weeks ahead or decided that morning?",
+      "createdAt": "2026-08-17T08:05:00.000Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "c1",
+      "postId": "p1",
+      "userId": "u2",
+      "body": "Fresh sheets. Every time.",
+      "createdAt": "2026-08-15T18:30:00.000Z"
+    },
+    {
+      "id": "c2",
+      "postId": "p1",
+      "userId": "u3",
+      "body": "A walk after dinner fixes so many moods.",
+      "createdAt": "2026-08-15T19:01:00.000Z"
+    },
+    {
+      "id": "c3",
+      "postId": "p2",
+      "userId": "u1",
+      "body": "I need a whole playlist thread for this.",
+      "createdAt": "2026-08-15T21:02:00.000Z"
+    },
+    {
+      "id": "c4",
+      "postId": "p3",
+      "userId": "u2",
+      "body": "Dinner, walk, dessert is the elite route.",
+      "createdAt": "2026-08-16T12:12:00.000Z"
+    },
+    {
+      "id": "c5",
+      "postId": "p4",
+      "userId": "u3",
+      "body": "This reminded me to start my brag note.",
+      "createdAt": "2026-08-16T17:00:00.000Z"
+    }
+  ],
+  "likes": [
+    {
+      "id": "l1",
+      "userId": "u2",
+      "targetType": "post",
+      "targetId": "p1",
+      "createdAt": "2026-08-15T18:20:00.000Z"
+    },
+    {
+      "id": "l2",
+      "userId": "u3",
+      "targetType": "post",
+      "targetId": "p1",
+      "createdAt": "2026-08-15T18:22:00.000Z"
+    },
+    {
+      "id": "l3",
+      "userId": "u1",
+      "targetType": "post",
+      "targetId": "p2",
+      "createdAt": "2026-08-15T21:00:00.000Z"
+    },
+    {
+      "id": "l4",
+      "userId": "u3",
+      "targetType": "post",
+      "targetId": "p4",
+      "createdAt": "2026-08-16T17:02:00.000Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "n1",
+      "userId": "u1",
+      "message": "Jade commented on your post.",
+      "link": "#/community",
+      "read": false,
+      "createdAt": "2026-08-15T18:30:00.000Z"
+    }
+  ],
+  "reports": [
+    {
+      "id": "r1",
+      "userId": "u3",
+      "itemType": "post",
+      "itemId": "p5",
+      "reason": "Other",
+      "details": "Testing the moderation queue with a harmless demo report.",
+      "reviewed": false,
+      "createdAt": "2026-08-17T08:35:00.000Z"
+    }
+  ]
+}

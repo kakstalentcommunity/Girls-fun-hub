@@ -15,6 +15,7 @@ const toastEl = document.getElementById("toast");
 const routes = {
   "/": renderHome,
   "/games": renderGames,
+  "/play": renderGame,
   "/premium": renderPremium,
   "/quizzes": renderQuizzes,
   "/quiz": renderQuiz,
@@ -348,6 +349,59 @@ function renderGames() {
       </div>
     </section>
   `, "Games");
+}
+
+function renderGame(params) {
+  const id = params.get("id");
+  const game = state.data.games.find((item) => item.id === id);
+  if (!game) {
+    renderGames();
+    return;
+  }
+  if (!state.currentUser || state.currentUser.role !== "user") {
+    setPage(authRequired("Sign in to play, save your progress and access member game rooms."), "Sign in to play");
+    return;
+  }
+
+  const activity = gameActivity(game);
+  setPage(`
+    <section class="page narrow">
+      ${pageTitle(game.title, game.description)}
+      <div class="panel game-room">
+        <p class="eyebrow">${escapeHtml(game.category)}</p>
+        <h2>${escapeHtml(activity.heading)}</h2>
+        <p class="subtle">${escapeHtml(activity.instructions)}</p>
+        <div class="prompt-box">
+          <h3>${escapeHtml(activity.prompt)}</h3>
+          <div class="choice-grid">
+            ${activity.options.map((option) => `<button class="button primary" type="button" data-action="answer-game" data-game="${escapeAttr(game.id)}" data-answer="${escapeAttr(option)}">${escapeHtml(option)}</button>`).join("")}
+          </div>
+        </div>
+        <div class="result-box" id="game-result" aria-live="polite">Choose an answer to continue.</div>
+        <div class="button-row">
+          <button class="button ghost" type="button" data-action="new-game-round" data-game="${escapeAttr(game.id)}">New round</button>
+          <a class="button ghost" href="#/games">Back to mind games</a>
+        </div>
+      </div>
+    </section>
+  `, game.title);
+}
+
+function gameActivity(game) {
+  const activities = {
+    "word-weave": ["Build a story", "Choose the word that best completes your opening line.", "Your next chapter begins with a single…", ["idea", "conversation", "brave step", "question"]],
+    "memory-studio": ["Focus flash", "Study the choices for a moment, then select the detail you would keep.", "Which detail deserves your attention right now?", ["A useful fact", "A kind moment", "A fresh idea", "A clear goal"]],
+    "money-moves": ["Money confidence", "Choose the response that supports your priorities.", "A little extra money arrives. What is your first move?", ["Save a portion", "Pay a priority", "Invest in learning", "Enjoy it mindfully"]],
+    "career-compass": ["Strength spotter", "Choose the strength you want to practise this week.", "What quality will guide your next work conversation?", ["Clear communication", "Curiosity", "Leadership", "Boundaries"]],
+    "culture-quiz": ["Culture cue", "Pick a subject to explore, then start a conversation about it.", "Which lens feels most interesting today?", ["Books", "Film", "Music", "Women in history"]],
+    "creative-spark": ["Creative prompt", "Pick a constraint and make something small in ten minutes.", "Create something inspired by…", ["A colour", "A memory", "A sound", "A place"]],
+    "strategy-table": ["Strategy choice", "Select the first move you would make when a task feels big.", "What is your strongest starting move?", ["Break it down", "Ask a question", "Set a time box", "Make a simple plan"]],
+    "wellbeing-checkin": ["Gentle check-in", "Choose what would support you most right now.", "What could make the next hour feel better?", ["A short break", "Water and food", "Fresh air", "A supportive message"]],
+    "travel-tales": ["Travel tale", "Choose a starting point and imagine the first detail of your journey.", "Your ideal discovery starts with…", ["Local food", "A museum", "A long walk", "A new language"]],
+    "vision-board": ["Vision cue", "Choose an area and turn it into one practical next action.", "What do you want to make room for?", ["Confidence", "Rest", "Learning", "Adventure"]]
+  };
+  const [heading, instructions, prompt, options] = activities[game.id] || activities["creative-spark"];
+  return { heading, instructions, prompt, options };
 }
 
 function renderPremium() {
@@ -791,7 +845,7 @@ function gameCard(game) {
       <h3>${escapeHtml(game.title)}</h3>
       <p>${escapeHtml(game.description)}</p>
       <div class="push">
-        <a class="button small primary" href="#/games">Play</a>
+        <a class="button small primary" href="#/play?id=${escapeAttr(game.id)}">Play</a>
       </div>
     </article>
   `;
@@ -1193,6 +1247,26 @@ async function handleClick(event) {
     if (action === "start-premium") {
       await requireMemberAction();
       showToast("Secure payment is not connected yet. No charge was made.");
+      return;
+    }
+
+    if (action === "answer-game") {
+      await requireMemberAction();
+      const result = document.getElementById("game-result");
+      if (result) {
+        result.textContent = `Great choice: ${button.dataset.answer}. Notice what drew you to it, then carry one small part of it into your day.`;
+      }
+      document.querySelectorAll("[data-action='answer-game']").forEach((choice) => {
+        choice.classList.toggle("selected-answer", choice === button);
+        choice.disabled = true;
+      });
+      return;
+    }
+
+    if (action === "new-game-round") {
+      await requireMemberAction();
+      window.location.hash = `#/play?id=${encodeURIComponent(button.dataset.game)}`;
+      renderRoute();
       return;
     }
 

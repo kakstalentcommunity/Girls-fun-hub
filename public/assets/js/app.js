@@ -15,6 +15,7 @@ const toastEl = document.getElementById("toast");
 const routes = {
   "/": renderHome,
   "/games": renderGames,
+  "/premium": renderPremium,
   "/quizzes": renderQuizzes,
   "/quiz": renderQuiz,
   "/challenges": renderChallenges,
@@ -44,7 +45,6 @@ document.addEventListener("click", handleClick);
 document.addEventListener("submit", handleSubmit);
 
 async function init() {
-  applyTheme(localStorage.getItem("gfh-theme") || "light");
   await refresh();
   renderRoute();
 }
@@ -85,7 +85,8 @@ async function renderRoute() {
 function renderNav(activePath) {
   const links = [
     ["/", "Home"],
-    ["/games", "Games"],
+    ["/games", "Mind Games"],
+    ["/premium", "Premium"],
     ["/quizzes", "Quizzes"],
     ["/challenges", "Challenges"],
     ["/polls", "Polls"],
@@ -109,9 +110,9 @@ function renderNav(activePath) {
 
   header.innerHTML = `
     <nav class="nav ${state.navOpen ? "open" : ""}" aria-label="Primary navigation">
-      <a class="brand" href="#/" aria-label="Girls Fun Hub home">
-        <span class="brand-mark">GFH</span>
-        <span class="brand-text">Girls Fun Hub</span>
+      <a class="brand" href="#/" aria-label="Her Circle home">
+        <span class="brand-mark">HC</span>
+        <span class="brand-text">Her Circle</span>
       </a>
       <button type="button" class="nav-toggle" data-action="toggle-nav" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
@@ -126,14 +127,13 @@ function renderNav(activePath) {
           <button type="submit" aria-label="Search">Go</button>
         </form>
         ${authLinks}
-        <button type="button" data-action="toggle-theme">${document.body.classList.contains("theme-dark") ? "Light" : "Dark"}</button>
       </div>
     </nav>
   `;
 }
 
-function setPage(html, title = "Girls Fun Hub") {
-  document.title = `${title} | Girls Fun Hub`;
+function setPage(html, title = "Her Circle") {
+  document.title = `${title} | Her Circle`;
   app.innerHTML = html;
   window.scrollTo({ top: 0, behavior: "instant" });
 }
@@ -154,7 +154,7 @@ function pageTitle(title, copy) {
   return `
     <div class="page-title">
       <div>
-        <p class="eyebrow">Girls Fun Hub</p>
+        <p class="eyebrow">Her Circle</p>
         <h1>${escapeHtml(title)}</h1>
         ${copy ? `<p>${escapeHtml(copy)}</p>` : ""}
       </div>
@@ -173,35 +173,35 @@ function renderHome() {
   setPage(`
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Laugh. Play. Connect. Have Fun.</p>
-        <h1>Girls Fun Hub</h1>
-        <h2 class="hero-line">Have Fun. Be Yourself.</h2>
-        <p class="lede">Discover games, quizzes, challenges, conversations and entertainment made for women who just want to have a good time.</p>
+        <p class="eyebrow">A space that is yours</p>
+        <h1>Her Circle</h1>
+        <h2 class="hero-line">Play, learn, and take up space.</h2>
+        <p class="lede">Mindful games, creative prompts and practical inspiration for women who want a little more joy, confidence and connection in their day.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#/games">Explore Fun</a>
-          <a class="button secondary" href="#/community">Join the Community</a>
+          <a class="button primary" href="#/games">Explore mind games</a>
+          <a class="button secondary" href="#/premium">See Premium</a>
         </div>
         <div class="metric-strip" aria-label="Site highlights">
           <div class="metric"><strong>${data.games.length}</strong><span>Games</span></div>
           <div class="metric"><strong>${data.quizzes.length}</strong><span>Quizzes</span></div>
-          <div class="metric"><strong>${data.posts.length}</strong><span>Community posts</span></div>
+          <div class="metric"><strong>18+</strong><span>Members only</span></div>
         </div>
       </div>
       <div class="hero-card">
-        <img src="/assets/images/hero-visual.svg" alt="Abstract activity collage for Girls Fun Hub" loading="eager">
+        <img src="/assets/images/photo-1723291875479-db4df7217211.avif" alt="A woman enjoying a calm, confident moment" loading="eager">
       </div>
     </section>
 
     <section class="section-band">
       <div class="section-inner">
-        ${sectionHead("Featured Games", "Pick something quick, social, or surprising.", '<a class="button ghost" href="#/games">View all games</a>')}
+        ${sectionHead("Featured games", "Choose a small challenge that sharpens your thinking or opens a new conversation.", '<a class="button ghost" href="#/games">View all games</a>')}
         <div class="grid four">${featuredGames}</div>
       </div>
     </section>
 
     <section class="section-band alt">
       <div class="section-inner">
-        ${sectionHead("Trending Quizzes", "Light personality reads with shareable results.", '<a class="button ghost" href="#/quizzes">Browse quizzes</a>')}
+        ${sectionHead("Know yourself", "Reflective quizzes made for curiosity, not labels.", '<a class="button ghost" href="#/quizzes">Browse quizzes</a>')}
         <div class="grid">${quizCards}</div>
       </div>
     </section>
@@ -244,41 +244,45 @@ function renderGames() {
 
   setPage(`
     <section class="page">
-      ${pageTitle("Games", "Interactive games that store votes and responses when you are signed in.")}
+      ${pageTitle("Mind Games", "Low-pressure games for sharp thinking, creative energy and meaningful conversation. Choose what feels good today.")}
+      <div class="game-library panel soft">
+        <p class="eyebrow">Explore your way</p>
+        <div class="grid four">${state.data.games.map(gameCard).join("")}</div>
+      </div>
       <div class="game-layout">
         <div class="game-panel">
           <div class="panel">
-            <h2>Would You Rather</h2>
-            <p class="subtle">Choose once per round. You can change your choice before moving on.</p>
+            <h2>Values & Vision</h2>
+            <p class="subtle">Choose the option that feels right for you. There is no correct answer.</p>
             <div class="game-panel">${rounds}</div>
           </div>
 
           <div class="panel">
-            <h2>Truth or Dare</h2>
-            <p class="subtle">Generate a local prompt from the database.</p>
+            <h2>Reflect & Try</h2>
+            <p class="subtle">Pick a thoughtful question or a kind mini-challenge.</p>
             <div class="button-row">
-              <button class="button primary" type="button" data-action="get-prompt" data-type="truth">Truth</button>
-              <button class="button secondary" type="button" data-action="get-prompt" data-type="dare">Dare</button>
+              <button class="button primary" type="button" data-action="get-prompt" data-type="truth">Reflect</button>
+              <button class="button secondary" type="button" data-action="get-prompt" data-type="dare">Try something new</button>
             </div>
             <div class="prompt-box" id="truth-dare-prompt">Choose Truth or Dare to start.</div>
           </div>
 
           <div class="panel">
-            <h2>Never Have I Ever</h2>
-            <p class="subtle">Answer a few light statements and compare totals.</p>
+            <h2>Life Stories</h2>
+            <p class="subtle">Celebrate experiences without pressure to compare.</p>
             <div class="game-panel">${never}</div>
           </div>
         </div>
 
         <aside class="game-panel">
           <div class="panel">
-            <h2>Spin the Wheel</h2>
-            <p class="subtle">Spin for a category and a quick prompt.</p>
+            <h2>Prompt Picker</h2>
+            <p class="subtle">Pick a gentle prompt for a fresh perspective.</p>
             <div class="wheel-wrap">
               <div class="wheel-pointer" aria-hidden="true"></div>
               <div class="wheel" id="wheel" style="transform: rotate(${state.wheelRotation}deg)"></div>
               <button class="button primary" type="button" data-action="spin-wheel">Spin</button>
-              <div class="result-box" id="wheel-result">Wheel categories: Truth, Dare, Challenge, Question, Random.</div>
+              <div class="result-box" id="wheel-result">Prompts: reflect, try, create, connect or reset.</div>
             </div>
           </div>
 
@@ -304,6 +308,30 @@ function renderGames() {
       </div>
     </section>
   `, "Games");
+}
+
+function renderPremium() {
+  setPage(`
+    <section class="page narrow">
+      ${pageTitle("Her Circle Premium", "A simple, flexible way to support more thoughtful play and women-centred learning.")}
+      <div class="premium-card panel">
+        <p class="eyebrow">Premium membership</p>
+        <h2>KSh 30 every 3 days</h2>
+        <p class="subtle">Access member game packs, reflection prompts, creative challenges and new mind-stimulating activities as they are released.</p>
+        <ul class="feature-list">
+          <li>Fresh logic, word, memory and creativity games</li>
+          <li>Career, money, wellbeing and confidence prompts</li>
+          <li>Member-only challenges, with no streak pressure</li>
+          <li>Cancel before your next 3-day renewal</li>
+        </ul>
+        <div class="notice"><strong>Billing clarity:</strong> KSh 30 is charged every 3 days after you explicitly confirm payment. Payment processing is not connected in this build, so selecting the plan will not charge you.</div>
+        <div class="button-row">
+          <button class="button primary" type="button" data-action="start-premium">Continue to secure payment</button>
+          <a class="button ghost" href="#/games">Keep exploring free games</a>
+        </div>
+      </div>
+    </section>
+  `, "Premium");
 }
 
 function renderQuizzes() {
@@ -400,7 +428,7 @@ function renderEntertainment() {
   const groups = groupBy(state.data.entertainment, "section");
   setPage(`
     <section class="page">
-      ${pageTitle("Entertainment", "Music, movies, TV, celebrity news, trends, and viral topics with sample local content.")}
+      ${pageTitle("Entertainment", "Music, movies, TV, trends and cultural moments worth sharing.")}
       ${Object.entries(groups).map(([section, items]) => `
         <section class="section-band">
           ${sectionHead(section, "")}
@@ -500,7 +528,7 @@ function renderLogin() {
       <div class="auth-card">
         <p class="eyebrow">Welcome back</p>
         <h1>Login</h1>
-        <p>Use your member account or the documented demo admin account.</p>
+        <p>Sign in to save your progress and participate in member activities.</p>
         <form data-form="login">
           <div class="field">
             <label for="login-id">Username or email</label>
@@ -675,7 +703,7 @@ async function renderAdmin() {
 function renderGuidelines() {
   setPage(`
     <section class="page narrow">
-      ${pageTitle("Community Guidelines", "Girls Fun Hub is for adults 18 years or older and should stay welcoming.")}
+      ${pageTitle("Community Guidelines", "Her Circle is for adults 18 years or older and should stay welcoming.")}
       <div class="panel">
         <h2>Rules</h2>
         <p class="subtle">Be respectful. Do not harass, threaten, shame, scam, spam, or post illegal content. Do not share private information. Report harmful posts or comments so moderators can review them.</p>
@@ -689,9 +717,9 @@ function renderGuidelines() {
 function renderPrivacy() {
   setPage(`
     <section class="page narrow">
-      ${pageTitle("Privacy Policy", "Demo privacy language for the local MVP.")}
+      ${pageTitle("Privacy Policy", "How this app handles account and activity data.")}
       <div class="panel">
-        <p class="subtle">This local demo stores account, profile, game, quiz, poll, post, comment, notification, and report data in data/db.json. Public profiles do not expose private email addresses. Replace this page with a lawyer-reviewed policy before production use.</p>
+        <p class="subtle">This app stores account, profile, game, quiz, poll, post, comment, notification, and report data in its application database. Public profiles do not expose private email addresses. A production release needs a lawyer-reviewed privacy policy.</p>
       </div>
     </section>
   `, "Privacy Policy");
@@ -700,9 +728,9 @@ function renderPrivacy() {
 function renderTerms() {
   setPage(`
     <section class="page narrow">
-      ${pageTitle("Terms of Service", "Demo terms for setup and review.")}
+      ${pageTitle("Terms of Service", "A respectful, adults-only space.")}
       <div class="panel">
-        <p class="subtle">Girls Fun Hub is intended for adults 18 years or older. Users are responsible for their own posts and must follow community guidelines. Replace this page with production terms before launch.</p>
+        <p class="subtle">Her Circle is intended for adults 18 years or older. Users are responsible for their own posts and must follow community guidelines. A production release needs complete legal terms.</p>
       </div>
     </section>
   `, "Terms of Service");
@@ -715,6 +743,7 @@ function renderNotFound() {
 function gameCard(game) {
   return `
     <article class="card">
+      <img class="game-photo" src="${escapeAttr(gameImage(game.id))}" alt="${escapeAttr(`${game.title} activity`)}" loading="lazy">
       <div class="card-top">
         <span class="media-tile">${escapeHtml(game.imageLabel || shortLabel(game.title))}</span>
         <span class="tag">${escapeHtml(game.category)}</span>
@@ -726,6 +755,22 @@ function gameCard(game) {
       </div>
     </article>
   `;
+}
+
+function gameImage(id) {
+  const images = {
+    "word-weave": "photo-1633445159013-2d94bcf2c4c7.avif",
+    "memory-studio": "photo-1613619156882-7a28070fd28e.avif",
+    "money-moves": "photo-1611145434336-2324aa4079cd.avif",
+    "career-compass": "photo-1574015974293-817f0ebebb74.avif",
+    "culture-quiz": "photo-1555617135-8724b69f766c.avif",
+    "creative-spark": "photo-1529139574466-a303027c1d8b.avif",
+    "strategy-table": "photo-1515886657613-9f3515b0c78f.avif",
+    "wellbeing-checkin": "photo-1512101176959-c557f3516787.avif",
+    "travel-tales": "photo-1723291875479-db4df7217211.avif",
+    "vision-board": "photo-1613619156882-7a28070fd28e.avif"
+  };
+  return `/assets/images/${images[id] || "photo-1723291875479-db4df7217211.avif"}`;
 }
 
 function quizCard(quiz) {
@@ -1059,13 +1104,6 @@ async function handleClick(event) {
       return;
     }
 
-    if (action === "toggle-theme") {
-      const theme = document.body.classList.contains("theme-dark") ? "light" : "dark";
-      applyTheme(theme);
-      renderNav(getRoute().path);
-      return;
-    }
-
     if (action === "logout") {
       await api("/api/auth/logout", { method: "POST" });
       state.currentUser = null;
@@ -1109,6 +1147,12 @@ async function handleClick(event) {
 
     if (action === "spin-wheel") {
       spinWheel();
+      return;
+    }
+
+    if (action === "start-premium") {
+      await requireMemberAction();
+      showToast("Secure payment is not connected yet. No charge was made.");
       return;
     }
 
@@ -1185,7 +1229,7 @@ async function handleClick(event) {
     }
 
     if (action === "admin-delete-user") {
-      if (!window.confirm("Delete this user account in the demo database?")) return;
+      if (!window.confirm("Delete this user account?")) return;
       await api(`/api/admin/users/${encodeURIComponent(button.dataset.id)}`, { method: "DELETE" });
       await renderRoute();
       showToast("User deleted.");
@@ -1425,11 +1469,6 @@ function spinWheel() {
   }
 }
 
-function applyTheme(theme) {
-  document.body.classList.toggle("theme-dark", theme === "dark");
-  localStorage.setItem("gfh-theme", theme);
-}
-
 function showToast(message, type = "success") {
   toastEl.textContent = message;
   toastEl.className = `toast show ${type === "error" ? "error" : ""}`;
@@ -1504,7 +1543,7 @@ function shortLabel(value) {
   const words = String(value || "")
     .split(/[^a-zA-Z0-9]+/)
     .filter(Boolean);
-  if (!words.length) return "GFH";
+  if (!words.length) return "HC";
   return words.slice(0, 2).map((word) => word[0]).join("").toUpperCase();
 }
 

@@ -14,6 +14,18 @@ const RUNTIME_DATA_DIR = process.env.GFH_DATA_DIR || (IS_VERCEL ? path.join(os.t
 const DB_FILE = path.join(RUNTIME_DATA_DIR, "db.json");
 const SESSION_TTL_MS = 1000 * 60 * 60 * 8;
 const BODY_LIMIT_BYTES = 1024 * 1024;
+const CURATED_GAMES = [
+  ["word-weave", "Word Weave", "Word play", "Build a chain of ideas, words and stories from one small prompt.", "WW"],
+  ["memory-studio", "Memory Studio", "Focus", "A calm visual memory game you can play at your own pace.", "MS"],
+  ["money-moves", "Money Moves", "Life skills", "Explore practical money scenarios and talk through confident choices.", "MM"],
+  ["career-compass", "Career Compass", "Growth", "Prompts that help you name strengths, goals and your next brave step.", "CC"],
+  ["culture-quiz", "Culture Quiz", "Trivia", "Celebrate books, music, film, women in history and global culture.", "CQ"],
+  ["creative-spark", "Creative Spark", "Creativity", "Short drawing, writing and design prompts to reset your mind.", "CS"],
+  ["strategy-table", "Strategy Table", "Logic", "Friendly logic puzzles with no timer and no pressure.", "ST"],
+  ["wellbeing-checkin", "Wellbeing Check-in", "Wellbeing", "A private moment to notice what supports your energy today.", "WC"],
+  ["travel-tales", "Travel Tales", "Discovery", "Plan imaginary escapes and solve location clues with friends.", "TT"],
+  ["vision-board", "Vision Board", "Reflection", "Turn your values and ambitions into a practical next-step prompt.", "VB"]
+].map(([id, title, category, description, imageLabel]) => ({ id, title, category, description, imageLabel }));
 
 const sessions = new Map();
 
@@ -26,6 +38,7 @@ const MIME_TYPES = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
+  ".avif": "image/avif",
   ".txt": "text/plain; charset=utf-8",
   ".xml": "application/xml; charset=utf-8"
 };
@@ -42,7 +55,7 @@ function ensureDataStore() {
   if (!fs.existsSync(DB_FILE)) {
     const db = JSON.parse(fs.readFileSync(SEED_FILE, "utf8"));
     const adminPassword = process.env.GFH_ADMIN_PASSWORD || "ChangeMe-Admin-2026";
-    const demoPassword = process.env.GFH_DEMO_PASSWORD || "ChangeMe-User-2026";
+    const initialMemberPassword = process.env.HER_CIRCLE_MEMBER_PASSWORD || "ChangeMe-User-2026";
 
     db.admin_users = db.admin_users.map((admin) => ({
       ...admin,
@@ -52,7 +65,7 @@ function ensureDataStore() {
 
     db.users = db.users.map((user) => ({
       ...user,
-      passwordHash: hashPassword(demoPassword),
+      passwordHash: hashPassword(initialMemberPassword),
       createdAt: user.createdAt || now()
     }));
 
@@ -305,7 +318,7 @@ function publicBootstrap(db, session) {
     currentUser: getCurrentSubject(db, session),
     csrfToken: session ? session.csrf : null,
     categories: db.categories,
-    games: db.games,
+    games: CURATED_GAMES,
     wouldYouRatherRounds: db.wouldYouRatherRounds.map((round) => {
       const associatedVote = round.userVotes.find((vote) => vote.userId === currentUserId);
       return {
@@ -334,10 +347,7 @@ function publicBootstrap(db, session) {
     polls: db.polls.map((poll) => pollWithTotals(poll, currentUserId)),
     articles: db.articles,
     entertainment: db.entertainment,
-    posts: db.posts
-      .slice()
-      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-      .map((post) => postWithDetails(db, post, currentUserId)),
+    posts: [],
     notifications
   };
 }
@@ -1216,5 +1226,5 @@ const server = http.createServer((req, res) => {
 
 ensureDataStore();
 server.listen(PORT, () => {
-  console.log(`Girls Fun Hub is running at http://localhost:${PORT}`);
+  console.log(`Her Circle is running at http://localhost:${PORT}`);
 });

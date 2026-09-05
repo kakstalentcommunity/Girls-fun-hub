@@ -234,7 +234,47 @@ function renderHome() {
         <div class="grid four">${pollCards}</div>
       </div>
     </section>
+
+    <section class="section-band alt">
+      <div class="section-inner">
+        ${sectionHead("Inspiration library", "A visual pause for creativity, confidence and your next good idea.")}
+        <div class="inspiration-grid">${inspirationPhotos().map((photo, index) => `
+          <figure class="inspiration-item">
+            <img src="/assets/images/${escapeAttr(photo)}" alt="Her Circle inspiration image ${index + 1}" loading="lazy">
+          </figure>
+        `).join("")}</div>
+      </div>
+    </section>
   `, "Home");
+}
+
+function inspirationPhotos() {
+  return [
+    "pexels-109-marle-2159590461-36168703.jpg",
+    "pexels-771703800-30963560.jpg",
+    "pexels-ana-alice-azevedo-281453352-14414653.jpg",
+    "pexels-andry-sasongko-2155578160-39221484.jpg",
+    "pexels-ch-p-nh-chan-dung-2155026650-37206877.jpg",
+    "pexels-daniela-elena-tentis-118658-364382.jpg",
+    "pexels-felix-young-449360607-23196386.jpg",
+    "pexels-felix-young-449360607-23196484.jpg",
+    "pexels-felix-young-449360607-23385664.jpg",
+    "pexels-h-i-nguy-n-1627264-8603594.jpg",
+    "pexels-h-i-nguy-n-1627264-8603596.jpg",
+    "pexels-hi-u-le-921253873-38332853.jpg",
+    "pexels-ianandradef-1834418.jpg",
+    "pexels-israwmx-28409113.jpg",
+    "pexels-joshua-lim-1225706196-35574164.jpg",
+    "pexels-juliano-astc-1623739-10978847.jpg",
+    "pexels-kelson-martins-130172688-14711433.jpg",
+    "pexels-soldiervip-11147214.jpg",
+    "pexels-soldiervip-13638818.jpg",
+    "pexels-soldiervip-31446149.jpg",
+    "pexels-thao-trungthao-205378-2806130.jpg",
+    "pexels-ti-u-b-o-tr-ng-41366219-10300196.jpg",
+    "pexels-vika-glitter-392079-19893525.jpg",
+    "pexels-wjretratos-1918441.jpg"
+  ];
 }
 
 function renderGames() {

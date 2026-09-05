@@ -84,24 +84,36 @@ async function renderRoute() {
 }
 
 function renderNav(activePath) {
-  const links = [
+  const publicLinks = [
     ["/", "Home"],
     ["/games", "Mind Games"],
     ["/premium", "Premium"],
+    ["/lifestyle", "Lifestyle"],
+    ["/entertainment", "Entertainment"]
+  ];
+  const user = state.currentUser;
+  const isAdmin = user && user.role === "admin";
+  const memberLinks = [
+    ["/", "Home"],
+    ["/games", "Mind Games"],
+    ["/premium", "Premium"],
+    ["/lifestyle", "Lifestyle"],
+    ["/entertainment", "Entertainment"],
     ["/quizzes", "Quizzes"],
     ["/challenges", "Challenges"],
     ["/polls", "Polls"],
-    ["/lifestyle", "Lifestyle"],
-    ["/entertainment", "Entertainment"],
     ["/community", "Community"]
   ];
-
-  const user = state.currentUser;
-  const authLinks = user
+  const links = isAdmin ? [["/admin", "Dashboard"]] : user ? memberLinks : publicLinks;
+  const authLinks = isAdmin
+    ? `
+      <span class="admin-status">Admin workspace</span>
+      <button type="button" data-action="logout">Logout</button>
+    `
+    : user
     ? `
       <a href="#/profile">${escapeHtml(user.username || "Profile")}</a>
       <a href="#/notifications">Notifications${state.data.notifications.length ? ` (${state.data.notifications.length})` : ""}</a>
-      ${user.role === "admin" ? '<a href="#/admin">Admin</a>' : ""}
       <button type="button" data-action="logout">Logout</button>
     `
     : `
@@ -110,10 +122,10 @@ function renderNav(activePath) {
     `;
 
   header.innerHTML = `
-    <nav class="nav ${state.navOpen ? "open" : ""}" aria-label="Primary navigation">
-      <a class="brand" href="#/" aria-label="Her Circle home">
+    <nav class="nav ${isAdmin ? "admin-nav" : ""} ${state.navOpen ? "open" : ""}" aria-label="${isAdmin ? "Admin" : "Primary"} navigation">
+      <a class="brand" href="#${isAdmin ? "/admin" : "/"}" aria-label="${isAdmin ? "Her Circle admin workspace" : "Her Circle home"}">
         <span class="brand-mark">HC</span>
-        <span class="brand-text">Her Circle</span>
+        <span class="brand-text">${isAdmin ? "Her Circle Admin" : "Her Circle"}</span>
       </a>
       <button type="button" class="nav-toggle" data-action="toggle-nav" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
@@ -122,11 +134,11 @@ function renderNav(activePath) {
         ${links.map(([path, label]) => `<a class="${activePath === path ? "active" : ""}" href="#${path}">${label}</a>`).join("")}
       </div>
       <div class="nav-actions">
-        <form class="nav-search" data-form="search">
+        ${isAdmin ? "" : `<form class="nav-search" data-form="search">
           <label class="sr-only" for="nav-search-input">Search</label>
           <input id="nav-search-input" name="q" type="search" placeholder="Search" autocomplete="off">
           <button type="submit" aria-label="Search">Go</button>
-        </form>
+        </form>`}
         ${authLinks}
       </div>
     </nav>
@@ -405,6 +417,10 @@ function gameActivity(game) {
 }
 
 function renderPremium() {
+  if (!state.currentUser || state.currentUser.role !== "user") {
+    setPage(authRequired("Sign in to view Premium membership and manage your member access."), "Premium membership");
+    return;
+  }
   setPage(`
     <section class="page narrow">
       ${pageTitle("Her Circle Premium", "A simple, flexible way to support more thoughtful play and women-centred learning.")}

@@ -14,6 +14,10 @@ const RUNTIME_DATA_DIR = process.env.GFH_DATA_DIR || (IS_VERCEL ? path.join(os.t
 const DB_FILE = path.join(RUNTIME_DATA_DIR, "db.json");
 const SESSION_TTL_MS = 1000 * 60 * 60 * 8;
 const BODY_LIMIT_BYTES = 1024 * 1024;
+const IS_PRODUCTION = process.env.NODE_ENV === "production" || IS_VERCEL;
+const AUTH_WINDOW_MS = 15 * 60 * 1000;
+const AUTH_LIMITS = { "/api/auth/login": 10, "/api/auth/register": 5 };
+const authAttempts = new Map();
 const CURATED_GAMES = [
   ["word-weave", "Word Weave", "Word play", "Build a chain of ideas, words and stories from one small prompt.", "WW"],
   ["memory-studio", "Memory Studio", "Focus", "A calm visual memory game you can play at your own pace.", "MS"],
@@ -108,6 +112,38 @@ function sendError(res, status, message, details) {
   sendJson(res, status, { error: message, details });
 }
 
+function clientKey(req) {
+  const forwarded = IS_VERCEL ? String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() : "";
+  return forwarded || req.socket.remoteAddress || "unknown";
+}
+
+function allowAuthAttempt(req, res, pathname) {
+  const limit = AUTH_LIMITS[pathname];
+  if (!limit) return true;
+  const key = `${pathname}:${clientKey(req)}`;
+  const time = Date.now();
+  const record = authAttempts.get(key) || { count: 0, resetAt: time + AUTH_WINDOW_MS };
+  if (record.resetAt <= time) {
+    record.count = 0;
+    record.resetAt = time + AUTH_WINDOW_MS;
+  }
+  record.count += 1;
+  authAttempts.set(key, record);
+  if (record.count <= limit) return true;
+  res.setHeader("Retry-After", Math.ceil((record.resetAt - time) / 1000));
+  sendError(res, 429, "Too many attempts. Please wait before trying again.");
+  return false;
+}
+
+function applySecurityHeaders(res) {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'");
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+  if (IS_PRODUCTION) res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+}
+
 function readBody(req) {
   return new Promise((resolve, reject) => {
     let raw = "";
@@ -154,7 +190,7 @@ function createSession(res, role, subjectId) {
   });
   res.setHeader(
     "Set-Cookie",
-    `gfh_session=${id}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${SESSION_TTL_MS / 1000}`
+    `gfh_session=${id}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${SESSION_TTL_MS / 1000}${IS_PRODUCTION ? "; Secure" : ""}`
   );
   return sessions.get(id);
 }
@@ -162,7 +198,7 @@ function createSession(res, role, subjectId) {
 function clearSession(req, res) {
   const id = parseCookies(req).gfh_session;
   if (id) sessions.delete(id);
-  res.setHeader("Set-Cookie", "gfh_session=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0");
+  res.setHeader("Set-Cookie", `gfh_session=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${IS_PRODUCTION ? "; Secure" : ""}`);
 }
 
 function getSession(req) {
@@ -463,6 +499,7 @@ async function handleApi(req, res, url) {
   const pathname = url.pathname;
 
   try {
+    if (method === "POST" && !allowAuthAttempt(req, res, pathname)) return;
     if (method === "GET" && pathname === "/api/bootstrap") {
       sendJson(res, 200, publicBootstrap(db, session));
       return;
@@ -1214,6 +1251,7 @@ function serveErrorPage(res, status) {
 }
 
 const server = http.createServer((req, res) => {
+  applySecurityHeaders(res);
   const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
   if (url.pathname.startsWith("/api/")) {
     handleApi(req, res, url).catch((error) => {

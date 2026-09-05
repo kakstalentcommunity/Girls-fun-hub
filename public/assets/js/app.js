@@ -507,7 +507,7 @@ async function renderArticle(params) {
   setPage(`
     <section class="page narrow">
       <article class="article-full">
-        <div class="article-visual">${escapeHtml(article.category)}</div>
+        <img class="article-visual article-photo" src="${escapeAttr(articleImage(article))}" alt="${escapeAttr(`${article.category}: ${article.title}`)}">
         <p class="eyebrow">${escapeHtml(article.category)}</p>
         <h1>${escapeHtml(article.title)}</h1>
         <p class="lede">${escapeHtml(article.excerpt)}</p>
@@ -523,11 +523,12 @@ function renderEntertainment() {
   setPage(`
     <section class="page">
       ${pageTitle("Entertainment", "Music, movies, TV, trends and cultural moments worth sharing.")}
-      ${Object.entries(groups).map(([section, items]) => `
+      ${Object.entries(groups).map(([section, items], sectionIndex) => `
         <section class="section-band">
           ${sectionHead(section, "")}
-          <div class="grid two">${items.map((item) => `
+          <div class="grid two">${items.map((item, itemIndex) => `
             <article class="card">
+              <img class="article-visual article-photo" src="${escapeAttr(entertainmentImage(sectionIndex, itemIndex))}" alt="${escapeAttr(`${section}: ${item.title}`)}" loading="lazy">
               <div class="card-top">
                 <span class="media-tile violet">${escapeHtml(shortLabel(section))}</span>
                 <span class="tag">${escapeHtml(section)}</span>
@@ -540,6 +541,11 @@ function renderEntertainment() {
       `).join("")}
     </section>
   `, "Entertainment");
+}
+
+function entertainmentImage(sectionIndex, itemIndex) {
+  const photos = inspirationPhotos();
+  return `/assets/images/${photos[(sectionIndex * 3 + itemIndex + 5) % photos.length]}`;
 }
 
 function renderCommunity() {
@@ -986,7 +992,7 @@ function renderClue(clue) {
 function articleCard(article) {
   return `
     <article class="card">
-      <div class="article-visual">${escapeHtml(shortLabel(article.category))}</div>
+      <img class="article-visual article-photo" src="${escapeAttr(articleImage(article))}" alt="${escapeAttr(`${article.category}: ${article.title}`)}" loading="lazy">
       <span class="tag">${escapeHtml(article.category)}</span>
       <h3>${escapeHtml(article.title)}</h3>
       <p>${escapeHtml(article.excerpt)}</p>
@@ -996,6 +1002,13 @@ function articleCard(article) {
       </div>
     </article>
   `;
+}
+
+function articleImage(article) {
+  const photos = inspirationPhotos();
+  const key = String(article.slug || article.id || article.title || "");
+  const index = [...key].reduce((sum, character) => sum + character.charCodeAt(0), 0) % photos.length;
+  return `/assets/images/${photos[index]}`;
 }
 
 function postCard(post) {
